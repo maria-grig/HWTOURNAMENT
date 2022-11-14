@@ -9,13 +9,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class GameTest {
     Game game = new Game();
 
-    Player player1 = new Player(1, "Kano", 80);
-    Player player2 = new Player(1, "Raiden", 30);
-    Player player3 = new Player(1, "Reptile", 30);
-    Player player4 = new Player(1, "Scorpion", 100);
-    Player player5 = new Player(1, "Shang Tsung", 60);
-    Player player6 = new Player(1, "Sonya Blade", 0);
-    Player player7 = new Player(1, "Sub-Zero", -5);
+    Player player1 = new Player(15, "Kano", 80);
+    Player player2 = new Player(16, "Raiden", 30);
+    Player player3 = new Player(17, "Reptile", 30);
+    Player player4 = new Player(23, "Scorpion", 100);
+    Player player5 = new Player(67, "Shang Tsung", 60);
+    Player player6 = new Player(11, "Sonya Blade", 0);
+    Player player7 = new Player(31, "Sub-Zero", -5);
 
     @BeforeEach
     public void setup() {
