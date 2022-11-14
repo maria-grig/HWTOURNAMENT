@@ -1,5 +1,6 @@
 package ru.netology;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,16 +17,49 @@ class GameTest {
     Player player6 = new Player(1, "Sonya Blade", 0);
     Player player7 = new Player(1, "Sub-Zero", -5);
 
-
-    @Test
-    public void shouldTrowExceptionWhenPlayer1Unregistered() {
-
+    @BeforeEach
+    public void setup() {
         game.register(player1);
         game.register(player2);
         game.register(player3);
         game.register(player4);
         game.register(player7);
+    }
 
+    @Test
+    public void shouldWinFirstPlayer() {
+
+        int expected = 1;
+        int actual = game.round("Kano", "Reptile");
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldWinSecondPlayer() {
+
+        int expected = 2;
+        int actual = game.round("Kano", "Scorpion");
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldPlayDrawn() {
+
+        int expected = 0;
+        int actual = game.round("Raiden", "Reptile");
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldWinFirstPlayerAgainstNegativeStrength() {
+
+        int expected = 1;
+        int actual = game.round("Kano", "Sub-Zero");
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldTrowExceptionWhenPlayer1Unregistered() {
         assertThrows(NotRegisteredException.class, () -> {
             game.round("Sonya Blade", "Kano");
         });
@@ -33,12 +67,6 @@ class GameTest {
 
     @Test
     public void shouldThrowExceptionWhenPlayer2Unregistered() {
-
-        game.register(player1);
-        game.register(player2);
-        game.register(player3);
-        game.register(player4);
-        game.register(player7);
 
         assertThrows(NotRegisteredException.class, () -> {
             game.round("Raiden", "Shang Tsung");
@@ -48,67 +76,10 @@ class GameTest {
     @Test
     public void shouldThrowExceptionWhenBothPlayersUnregistered() {
 
-        game.register(player1);
-        game.register(player2);
-        game.register(player3);
-        game.register(player4);
-        game.register(player7);
 
         assertThrows(NotRegisteredException.class, () -> {
             game.round("Sonya Blade", "Shang Tsung");
         });
-    }
-
-    @Test
-    public void shouldWinFirstPlayer() {
-
-        game.register(player1);
-        game.register(player2);
-        game.register(player3);
-        game.register(player4);
-        game.register(player7);
-
-        int expected = 1;
-        int actual = game.round("Kano", "Reptile");
-    }
-
-    @Test
-    public void shouldWinSecondPlayer() {
-
-        game.register(player1);
-        game.register(player2);
-        game.register(player3);
-        game.register(player4);
-        game.register(player7);
-
-        int expected = 2;
-        int actual = game.round("Kano", "Scorpion");
-    }
-
-    @Test
-    public void shouldPlayDrawn() {
-
-        game.register(player1);
-        game.register(player2);
-        game.register(player3);
-        game.register(player4);
-        game.register(player7);
-
-        int expected = 0;
-        int actual = game.round("Raiden", "Reptile");
-    }
-
-    @Test
-    public void shouldWinFirstPlayerAgainstNegativeStrength() {
-
-        game.register(player1);
-        game.register(player2);
-        game.register(player3);
-        game.register(player4);
-        game.register(player7);
-
-        int expected = 1;
-        int actual = game.round("Kano", "Sub-Zero");
     }
 
 }
