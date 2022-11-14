@@ -17,7 +17,6 @@ class GameTest {
     Player player7 = new Player(1, "Sub-Zero", -5);
 
 
-
     @Test
     public void shouldTrowExceptionWhenPlayer1Unregistered() {
 
